@@ -20,7 +20,7 @@ class CreateOrderItem(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['products'] = Product.objects.all()
-        if user.is_authenticated: 
+        if self.request.user.is_authenticated: 
             order, created = Order.objects.get_or_create(customer = self.request.user, complete=False )
             orderitems = order.orderitem_set.all()
             products_in_order = [orderitem.product for  orderitem in orderitems]

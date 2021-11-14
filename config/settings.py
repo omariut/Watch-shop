@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-tgexbr$d^wfe-+nyp1l(db$(i+p6#*&de5m4hotbybnp)h4tcl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['omar-ecom.herokuapp.com']
+ALLOWED_HOSTS = ['omar-ecom.herokuapp.com', '127.0.0.1']
 
 # Application definition
 
