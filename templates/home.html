@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <main>
+    
+    <div class="popular-items section-padding30">
+    <div class="container">
+    
+    <div class="row justify-content-center">
+    <div class="col-xl-7 col-lg-8 col-md-10">
+    <div class="section-tittle mb-70 text-center">
+    <h2>Popular Items</h2>
+    <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    
+    
+    
+    {% for product in products %}
+    
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+    <div class="single-popular-items mb-50 text-center">
+    <div class="popular-img">
+    <img src="{{product.image.url}}" alt="" >
+
+    <div class="img-cap" style= "border-color: aliceblue;">
+
+    
+    <form action="{% url 'orders:add-to-cart'  %}" method="POST">
+    {% csrf_token %}
+    <select hidden name="product" required id="id_product">
+        <option value="{{product.id}}" selected></option>
+      </select>
+
+<span>
+    {% if product in products_in_order %}
+    <span><button class="btn btn-primary" type="button" ><a style="color: aliceblue;" href="{% url 'orders:cart-edit' order.id %}">View Cart</a></button></span>
+    {%else%}
+    <span>
+        <button class="btn btn-primary" type="submit">Add to Cart </button>
+    </span>
+    {% endif %}
+</span>
+    </form>
+
+</div>
+    
+  
+    <div class="favorit-items">
+    <span class="flaticon-heart"></span>
+    </div>
+    </div>
+    <div class="popular-caption">
+    <h3><a href="https://preview.colorlib.com/theme/timezone/product_details.html">{{product.name}}</a></h3>
+    <span>$ {{product.unit_price}}</span>
+    </div>
+    </div>
+    </div>
+    {%endfor%}
+    </div>
+ 
+    <div class="row justify-content-center">
+    
+    </div>
+    </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </main>
+    
+    
+    <div class="search-model-box" style="display: none;">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+    <div class="search-close-btn">+</div>
+    <form class="search-model-form">
+    <input type="text" id="search-input" placeholder="Searching key.....">
+    </form>
+    </div>
+    </div>
+
+
+
+    {% endblock  %}
+
+

@@ -1,0 +1,12 @@
+
+{{ object.get_absolute_url }}
+<form action = "" method="POST">
+
+    {% csrf_token %}
+
+    {{form}}
+
+    <button type="submit">Submit</button>
+    
+  
+</form>

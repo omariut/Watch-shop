@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<main>
+   
+
+    <div class="slider-area ">
+    <div class="single-slider slider-height2 d-flex align-items-center">
+    <div class="container">
+    <div class="row">
+    <div class="col-xl-12">
+    <div class="hero-cap text-center">
+    <h2>Cart List</h2>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+   
+    <section class="cart_area section_padding">
+    <div class="container">
+    <div class="cart_inner">
+    <div class="table-responsive">
+    <table class="table">
+    <thead>
+    
+    <tr>
+    <th scope="col">Product</th>
+    <th scope="col">Quantity</th>
+    <th scope="col">Price</th>
+    <th scope="col">Total</th>
+    </tr>
+
+    </thead>
+    <tbody>
+<form action="{%url 'orders:cart-edit' order.id %}" method="POST">
+    {% csrf_token %}
+    {{form.management_form}}
+    {% for item in form %}
+    {{item.id}}
+
+  
+    
+<tr >
+
+    <td style='padding: 0px;'>
+
+<figure>
+<img  src="{{item.instance.product.image.url}}" style='max-width: 150px; max-height:100px;' alt="">
+<figcaption>{{item.instance.product.name}}</figcaption>
+
+</figure>
+
+</td>
+
+
+
+
+<td>
+
+
+{{item.quantity}}
+
+    <!-- {% comment %} <form action="{% url 'orders:cart-edit' order.id %}" method="POST">
+        {% csrf_token %}
+        <input type="number" id="id_quantity" value={{item.quantity}} name='quantity'>
+        <button type="submit"> Submit </button>
+    </form>  {% endcomment %} -->
+
+</td>
+<td>{{item.instance.product.unit_price}}</td>
+<td>{{item.instance.get_orderitem_price}}</td>
+
+<td>
+
+{{item.DELETE}} Remove
+
+</td>
+
+
+
+
+        </tr>
+
+{% endfor %}
+
+       <tr>
+           <td></td>
+           <td></td>
+           <td>Subtotal: </td>
+           <td>{{order.get_total_price}}</td>
+        </tr>
+    </tbody>
+    </table>
+    <div class="checkout_btn_inner float-right">
+    <!-- <a class="btn_1" href="#">Continue Shopping</a> -->
+
+    <button class="btn_1 checkout_btn_1" type="submit">Proceed to checkout</button>
+    </div>
+  
+</form>
+
+
+    </div>
+    </div>
+    </div></section>
+    
+    </main>
+
+
+{% endblock  %}
+
+
+
+
+{%block script%}
+
+{%endblock script%}
+
+
