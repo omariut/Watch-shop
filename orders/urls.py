@@ -5,7 +5,7 @@ from orders.views import CreateOrderItem, EditCart, CheckOutView, ConfirmationVi
 app_name = 'orders'
 
 urlpatterns = [
-    path('home', CreateOrderItem.as_view(), name='add-to-cart'),
+    path('add-to-cart', CreateOrderItem.as_view(), name='add-to-cart'),
     path('', CreateOrderItem.as_view(), name='home'),
     path('cart-edit/<int:pk>', EditCart.as_view(), name='cart-edit'),
     path('checkout', CheckOutView.as_view(), name='checkout'),
