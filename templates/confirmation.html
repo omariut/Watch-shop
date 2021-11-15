@@ -21,9 +21,13 @@
 <div class="row">
 <div class="col-lg-12">
 <div class="confirmation_tittle">
-<span><h4>Thank you. Your order is completed.  </h4></span>
+<span><h4>Thank you {{request.user.name}}. Your order is completed.  </h4></span>
  <span style='font-size:25px;'> But this is a demo website.
     So, Don't wait for your products! &#128523;</span> 
+
+    {% if  not user.is_authenticated %}
+    <p style='font-size:25px;'> You aren't Logged in.  </p>
+    {% endif %}
 </div>
 </div>
 
