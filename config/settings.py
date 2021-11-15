@@ -138,3 +138,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 LOGIN_REDIRECT_URL = "orders:add-to-cart"
 LOGOUT_REDIRECT_URL = "login"
+
+# heroku_deployment
+import dj_database_url
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES["default"].update(db_from_env)
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+SESSION_SAVE_EVERY_REQUEST = True

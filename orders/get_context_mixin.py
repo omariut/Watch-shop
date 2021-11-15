@@ -5,7 +5,7 @@ from orders.models import Order, OrderItem, Address
 class GetContextMixin:
     def get_current_order(self):
         try:
-            order = Order.objects.get_or_create(
+            order, created = Order.objects.get_or_create(
                 customer=self.request.user, complete=False
             )
         except:
